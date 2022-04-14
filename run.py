@@ -1,5 +1,5 @@
 from user.signup_text import login
 
-with login() as bot:
+with login(teardown=True) as bot:
     bot.first_page()
-    bot.login_test('op1@gmail.com', 'Test12345_')
+    bot.sign_up_button()

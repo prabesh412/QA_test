@@ -5,7 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import user.constants as const
 import time
-from user.form_Test import add_species
 
 class login(webdriver.Chrome):
     def __init__(self, driver_path=r";C:/Program Files (x86)/", teardown=False):
@@ -20,6 +19,8 @@ class login(webdriver.Chrome):
 
     def first_page(self):
         self.get(const.base_url+'dashboard/app')
+
+
 
     def login_test(self, id, key):
         self.get("https://cfportal.ktm.yetiappcloud.com/auth/login")
@@ -58,3 +59,18 @@ class login(webdriver.Chrome):
             print("Failed")
         else:
             print("working on it")
+
+
+    def footer_test(self):
+        self.get('https://cfportal.ktm.yetiappcloud.com/partners')
+        self.implicitly_wait(5)
+        link = self.find_element(By.XPATH, '//div[@class="css-ikzlcq"][1]/a[@href="/about-us"]').click()
+        if self.current_url == "https://cfportal.ktm.yetiappcloud.com/404":
+            print("success")
+
+    def sign_up_button(self):
+        self.get('https://cfportal.ktm.yetiappcloud.com/')
+        self.implicitly_wait(5)
+        resp = self.find_element(By.XPATH, '//div[@style="opacity: 1; transform: none;"]/a[@class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButtonBase-root  css-1fayv3"]').click()
+        if self.current_url == "https://cfportal.ktm.yetiappcloud.com/dashboard":
+            print("sucess")
